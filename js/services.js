@@ -142,12 +142,13 @@ export function openRouteTracking(routeId) {
         const startTime = document.getElementById('tracking-stop-start-time');
         const endTime = document.getElementById('tracking-stop-end-time');
 
-        if (startName) startName.innerText = `Origem - ${data.trajeto || data.sede}`;
+                if (startName) startName.innerText = `Origem - ${data.trajeto || data.sede}`;
         if (startTime) startTime.innerText = data.inicio || '--:--';
         if (endTime) endTime.innerText = data.chegada || '--:--';
 
-        const busLat = data.latitude ?? data.lat;
-        const busLng = data.longitude ?? data.lng;
+        // Coordenadas padrão de teste caso venha vazio do Firebase:
+        const busLat = data.latitude ?? data.lat ?? -6.8522;
+        const busLng = data.longitude ?? data.lng ?? -35.4908;
 
         if (busLat !== undefined && busLng !== undefined) {
             updateBusOnMap(busLat, busLng, data.motorista);
