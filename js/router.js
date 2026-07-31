@@ -1,3 +1,5 @@
+import { invalidateTrackingMap } from './map.js';
+
 export function navigateTo(screenId) {
     const screens = document.querySelectorAll('.app-screen');
     screens.forEach(screen => screen.classList.remove('active'));
@@ -29,9 +31,9 @@ export function navigateTo(screenId) {
     }
 
     // Recalcula a renderização do mapa Leaflet ao exibir a tela de tracking
-    if (screenId === 'screen-tracking' && window.leafletMap) {
+    if (screenId === 'screen-tracking') {
         setTimeout(() => {
-            window.leafletMap.invalidateSize();
+            invalidateTrackingMap();
         }, 300);
     }
 }

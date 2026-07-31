@@ -1490,3 +1490,8 @@ select option:checked {
         max-width: 360px;
     }
 }
+
+.custom-bus-marker {
+    background: transparent !important;
+    border: none !important;
+}

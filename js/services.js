@@ -146,7 +146,12 @@ export function openRouteTracking(routeId) {
         if (startTime) startTime.innerText = data.inicio || '--:--';
         if (endTime) endTime.innerText = data.chegada || '--:--';
 
-        updateBusOnMap(data.latitude, data.longitude, data.motorista);
+        const busLat = data.latitude ?? data.lat;
+        const busLng = data.longitude ?? data.lng;
+
+        if (busLat !== undefined && busLng !== undefined) {
+            updateBusOnMap(busLat, busLng, data.motorista);
+        }
     });
 }
 
@@ -216,9 +221,9 @@ export function initServices() {
                 mensagem: msgText,
                 data: timestamp
             }).then(() => {
-            showSuccess("Seu feedback foi entregue à secretaria.");
-            formFeedback.reset();
-            navigateTo('screen-home');
+                showSuccess("Seu feedback foi entregue à secretaria.");
+                formFeedback.reset();
+                navigateTo('screen-home');
             });
         });
     }
